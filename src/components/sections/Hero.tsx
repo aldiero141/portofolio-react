@@ -111,6 +111,7 @@ export function Hero() {
             </a>
             <a
               href={OWNER.resumeUrl}
+              download="Alexander_Rivelino_Aldo_Aldiero_Resume.pdf"
               target="_blank"
               rel="noopener noreferrer"
               className="group inline-flex items-center justify-center gap-2 border-2 border-white/20 bg-transparent px-8 py-3 text-sm font-bold tracking-widest text-foreground uppercase transition-all duration-200 hover:border-secondary hover:text-secondary active:scale-95"
