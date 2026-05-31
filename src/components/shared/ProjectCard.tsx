@@ -84,7 +84,7 @@ export function ProjectCard({ project, index = 0 }: ProjectCardProps) {
             {/* Project Image */}
             {project.image && (
               <img
-                src={`src/${project.image}`}
+                src={project.image}
                 alt={project.title}
                 className="h-full w-full object-cover object-top transition-all duration-300 group-hover:scale-105"
               />
@@ -171,7 +171,7 @@ export function ProjectCard({ project, index = 0 }: ProjectCardProps) {
         <div className="relative flex h-40 w-full items-center justify-center border-b-2 border-primary/20 bg-muted/30 overflow-hidden">
           {project.image && (
             <img
-              src={`src/${project.image}`}
+              src={project.image}
               alt={project.title}
               className="h-full w-full object-cover object-top transition-all duration-300 group-hover:scale-105"
             />
