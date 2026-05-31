@@ -14,7 +14,7 @@ export function ProjectFilterSection({ projects }: ProjectFilterSectionProps) {
 
   const categories = ["All", ...new Set(projects.map((p) => p.category))]
 
-  const filteredProjects = projects.filter((p) => {
+  const filteredProjects = projects.sort((a, b) => b.year - a.year).filter((p) => {
     if (activeFilter === "All") return true
     return p.category === activeFilter
   })

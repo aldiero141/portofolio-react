@@ -10,6 +10,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/dialog"
+import { Logo } from "./Logo"
 
 const GithubIcon = ({
   size,
@@ -41,12 +42,6 @@ interface ProjectCardProps {
 }
 
 export function ProjectCard({ project, index = 0 }: ProjectCardProps) {
-  const categoryColors: Record<string, string> = {
-    SaaS: "bg-primary/10 text-primary border-primary/40",
-    "AI/ML": "bg-blue-500/10 text-blue-400 border-blue-500/40",
-    "E-Commerce": "bg-emerald-500/10 text-emerald-400 border-emerald-500/40",
-    Analytics: "bg-amber-500/10 text-amber-400 border-amber-500/40",
-  }
 
   return (
     <Dialog>
@@ -66,21 +61,35 @@ export function ProjectCard({ project, index = 0 }: ProjectCardProps) {
 
           {/* Header band */}
           <div className="relative h-48 overflow-hidden border-b-2 border-primary/20 bg-muted/50 transition-all group-hover:border-accent">
-            {/* Cyber Grid */}
-            <div
-              className="absolute inset-0 opacity-30 group-hover:opacity-0"
-              style={{
-                backgroundImage:
-                  "linear-gradient(var(--primary) 1px, transparent 1px), linear-gradient(90deg, var(--primary) 1px, transparent 1px)",
-                backgroundSize: "20px 20px",
-              }}
-            />
-            {/* Big initials */}
-            <div className="absolute inset-0 flex items-center justify-center">
-              <span className="text-7xl font-black text-primary uppercase opacity-20 transition-all duration-300 select-none group-hover:scale-110 group-hover:text-accent group-hover:opacity-50">
-                {project.title.charAt(0)}
-              </span>
-            </div>
+            {!project.image && (
+              <>
+              {/* Cyber Grid */}
+              <div
+                className="absolute inset-0 opacity-30 group-hover:opacity-0"
+                style={{
+                  backgroundImage:
+                    "linear-gradient(var(--primary) 1px, transparent 1px), linear-gradient(90deg, var(--primary) 1px, transparent 1px)",
+                  backgroundSize: "20px 20px",
+                }}
+              />
+
+              {/* Big initials overlay */}
+              <div className="absolute inset-0 flex items-center justify-center">
+                {!project.image && (
+                  <Logo className="size-32 text-primary"/>
+                )}
+              </div>
+            </>
+            )}
+            {/* Project Image */}
+            {project.image && (
+              <img
+                src={`src/${project.image}`}
+                alt={project.title}
+                className="h-full w-full object-cover object-top transition-all duration-300 group-hover:scale-105"
+              />
+            )}
+            
             {/* Year badge */}
             <div className="absolute top-3 left-3 border border-secondary/40 bg-background/80 px-2 py-1 font-mono text-[10px] tracking-widest text-secondary uppercase">
               DATE: {project.year}
@@ -88,9 +97,8 @@ export function ProjectCard({ project, index = 0 }: ProjectCardProps) {
             {/* Category badge */}
             <div
               className={cn(
-                "absolute top-3 right-3 border px-2.5 py-1 text-xs font-bold tracking-tighter uppercase",
-                categoryColors[project.category] ??
-                  "border-secondary/30 bg-secondary/15 text-secondary"
+                "absolute top-3 right-3 border px-2.5 py-1 text-xs font-bold tracking-tighter uppercase ",
+                "border-secondary/30 bg-background/80 text-secondary"
               )}
             >
               {project.category}
@@ -160,16 +168,23 @@ export function ProjectCard({ project, index = 0 }: ProjectCardProps) {
         </motion.article>
       </DialogTrigger>
       <DialogContent className="max-w-2xl gap-0 overflow-hidden rounded-none border-2 border-primary bg-card p-0">
-        <div className="relative flex h-40 w-full items-center justify-center border-b-2 border-primary/20 bg-muted/30">
-          <span className="animate-neon-flicker text-8xl font-black text-primary opacity-20 select-none">
-            {project.title.charAt(0)}
-          </span>
+        <div className="relative flex h-40 w-full items-center justify-center border-b-2 border-primary/20 bg-muted/30 overflow-hidden">
+          {project.image && (
+            <img
+              src={`src/${project.image}`}
+              alt={project.title}
+              className="h-full w-full object-cover object-top transition-all duration-300 group-hover:scale-105"
+            />
+          )}
+          {!project.image && (
+            <Logo className="size-32 text-primary"/>
+          )}
+         
           <div className="absolute top-4 left-4">
             <div
               className={cn(
                 "border px-2.5 py-1 text-xs font-bold tracking-tighter uppercase",
-                categoryColors[project.category] ??
-                  "border-secondary/30 bg-secondary/15 text-secondary"
+                "border-secondary/30 bg-background/80 text-secondary"
               )}
             >
               {project.category}
@@ -182,14 +197,25 @@ export function ProjectCard({ project, index = 0 }: ProjectCardProps) {
               {project.title}
             </DialogTitle>
             <DialogDescription className="font-mono text-xs tracking-widest text-primary uppercase">
-              Deployment_Year:{" "}
+              <h4 className="text-xs font-bold tracking-widest text-primary uppercase">
+              Deployment_Year:
               <span className="text-secondary"> {project.year}</span>
+            </h4>
             </DialogDescription>
           </DialogHeader>
 
           <div className="space-y-3">
             <h4 className="text-xs font-bold tracking-widest text-primary uppercase">
-              Project_Specification
+              Project_Description
+            </h4>
+            <p className="font-mono text-sm leading-relaxed text-muted-foreground">
+              {project.description}
+            </p>
+          </div>
+
+          <div className="space-y-3">
+            <h4 className="text-xs font-bold tracking-widest text-primary uppercase">
+              Role_&_Contributions
             </h4>
             <p className="font-mono text-sm leading-relaxed text-muted-foreground">
               {project.longDescription}

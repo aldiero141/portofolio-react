@@ -1,7 +1,7 @@
 import { motion } from "framer-motion"
 import { Award, Code2, MapPin, Download, GraduationCap } from "lucide-react"
 import { OWNER } from "@/utils/constants"
-import avatarSvg from "@/components/shared/avatar.svg"
+import avatarSvg from "@/assets/avatar.svg"
 
 export function About() {
   const stats = [

@@ -62,11 +62,11 @@ export function Header() {
       <div className="mx-auto flex max-w-4xl items-center justify-between px-4 md:px-8">
         {/* Logo */}
         <a href="#home" className="group flex items-center gap-2">
-          <span className="group/name font-heading text-lg font-black tracking-tighter text-foreground uppercase transition-colors">
-            {OWNER.name.split(" ")[0]}
-            <span className="animate-neon-flicker font-mono text-xl font-black text-primary group-hover/name:text-secondary">
-              .
+          <span className="group/name text-lg font-black tracking-tighter text-foreground transition-colors lowercase">
+           <span className="animate-neon-flicker font-mono text-xl font-black text-primary group-hover/name:text-secondary mr-1">
+              //
             </span>
+            {OWNER.name.split(" ")[0]}
           </span>
         </a>
 
