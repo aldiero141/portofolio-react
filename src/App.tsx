@@ -1,21 +1,47 @@
-import { Button } from "@/components/ui/button"
+import { Header } from "@/components/layout/Header"
+import { GridBackground } from "@/components/shared/GridBackground"
+import { Hero } from "@/components/sections/Hero"
+import { About } from "@/components/sections/About"
+import { Projects } from "@/components/sections/Projects"
+import { Skills } from "@/components/sections/Skills"
+import { Experience } from "@/components/sections/Experience"
+// import { Education } from "@/components/sections/Education"
+import { Contact } from "@/components/sections/Contact"
+import { Footer } from "@/components/layout/Footer"
 
 export function App() {
   return (
-    <div className="flex min-h-svh p-6">
-      <div className="flex max-w-md min-w-0 flex-col gap-4 text-sm leading-loose">
-        <div>
-          <h1 className="font-medium">Project ready!</h1>
-          <p>You may now add components and start building.</p>
-          <p>We&apos;ve already added the button component for you.</p>
-          <Button className="mt-2">Button</Button>
-        </div>
-        <div className="font-mono text-xs text-muted-foreground">
-          (Press <kbd>d</kbd> to toggle dark mode)
-        </div>
-      </div>
+    <div className="min-h-svh font-sans text-foreground antialiased">
+      <GridBackground />
+      {/* Dynamic Header */}
+      <Header />
+
+      {/* Main Single Page Sections */}
+      <main>
+        {/* Hero Landing */}
+        <Hero />
+
+        {/* Detailed Biography */}
+        <About />
+
+        {/* Selected Portfolio Works */}
+        <Projects />
+
+        {/* Skill Matrix and Stack */}
+        <Skills />
+
+        {/* Vertical Timeline Journey */}
+        <Experience />
+
+        {/* Academic Path */}
+        {/* <Education /> */}
+
+        {/* Multi-channel Connection */}
+        <Contact />
+      </main>
+
+      {/* Styled Footer */}
+      <Footer />
     </div>
   )
 }
-
-export default App
