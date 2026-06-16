@@ -282,7 +282,7 @@ export const TESTIMONIALS: Testimonial[] = []
 export const OWNER = {
   name: 'Aldo Aldiero',
   title: 'Fullstack Engineer',
-  tagline: 'FullStack Engineer with 5+ years of experience designing and building scalable, performant web applications from frontend interfaces to backend systems.',
+  tagline: 'Fullstack Engineer with 5+ years of experience designing and building scalable, performant web applications from frontend interfaces to backend systems.',
   bio: 'Architecture is the balance of logic, efficiency, and human intent. As a Fullstack Engineer with 5+ years of experience, I build scalable, high-performance web applications using Next.js, Nuxt.js, and Laravel.\n\n I specialize in transforming complex requirements into intuitive, user-focused experiences while maintaining performance, scalability, and code quality. Having improved application performance by up to 40% and delivered features that drive engagement, I am passionate about creating software that is both technically robust and meaningful to the people who use it.',
   location: 'Yogyakarta, Indonesia',
   email: 'aldoaldiero.work@gmail.com',
