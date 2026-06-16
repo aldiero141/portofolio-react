@@ -1,5 +1,4 @@
 import { Header } from "@/components/layout/Header"
-import { GridBackground } from "@/components/shared/GridBackground"
 import { Hero } from "@/components/sections/Hero"
 import { About } from "@/components/sections/About"
 import { Projects } from "@/components/sections/Projects"
@@ -12,7 +11,6 @@ import { Footer } from "@/components/layout/Footer"
 export function App() {
   return (
     <div className="min-h-svh font-sans text-foreground antialiased">
-      <GridBackground />
       {/* Dynamic Header */}
       <Header />
 

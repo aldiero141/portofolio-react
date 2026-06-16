@@ -107,11 +107,11 @@ export function SocialLinks({
           className={cn(
             "group flex items-center gap-2 transition-all duration-200",
             variant === "pill" &&
-              "glass rounded-full border border-transparent px-4 py-2 text-sm font-medium text-muted-foreground hover:border-secondary/30 hover:bg-secondary/10 hover:text-secondary",
+              "border border-primary/20 bg-transparent px-4 py-2 text-sm font-medium text-on-surface-variant hover:border-primary hover:text-primary rounded-none",
             variant === "icon" &&
-              "glass h-9 w-9 items-center justify-center rounded-xl border border-white/8 text-muted-foreground hover:scale-105 hover:border-secondary/70 hover:text-secondary",
+              "h-9 w-9 items-center justify-center border border-primary/20 text-on-surface-variant hover:border-primary hover:text-primary rounded-none",
             variant === "default" &&
-              "text-muted-foreground hover:text-secondary"
+              "text-on-surface-variant hover:text-primary"
           )}
         >
           <Icon

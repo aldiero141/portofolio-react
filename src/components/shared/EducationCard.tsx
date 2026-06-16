@@ -1,6 +1,5 @@
 import { motion } from "framer-motion"
 import { GraduationCap, Calendar, MapPin } from "lucide-react"
-import { cn } from "@/lib/utils"
 import type { Education } from "@/types"
 
 interface EducationCardProps {
@@ -16,68 +15,64 @@ export function EducationCard({
 }: EducationCardProps) {
   return (
     <motion.div
-      initial={{ opacity: 0, x: -15 }}
-      whileInView={{ opacity: 1, x: 0 }}
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-60px" }}
-      transition={{ duration: 0.4, delay: index * 0.1 }}
+      transition={{ duration: 0.5, delay: index * 0.1 }}
       className="relative pl-8"
     >
       {/* Timeline line */}
       {!isLast && (
-        <div className="absolute top-6 bottom-0 left-[0.6rem] w-px bg-primary opacity-30" />
+        <div className="absolute top-6 bottom-0 left-[0.4rem] w-px bg-primary opacity-20" />
       )}
 
       {/* Timeline node */}
-      <div className="absolute top-1.5 left-0 z-10 flex h-5 w-5 items-center justify-center border-2 border-primary bg-background">
-        <div className="h-2 w-2 animate-pulse bg-primary" />
+      <div className="absolute top-1.5 left-0 z-10 flex h-3 w-3 items-center justify-center bg-primary">
+        <div className="h-1.5 w-1.5 bg-[#FFF8F1]" />
       </div>
 
       {/* Card */}
-      <div
-        className={cn(
-          "mb-10 rounded-none border-2 border-primary bg-card p-5 transition-all duration-300 hover:shadow-[0_0_20px_rgba(255,0,60,0.2)]",
-          "group relative"
-        )}
-      >
-        {/* Corner Brackets */}
-        <div className="absolute top-0 left-0 z-20 h-2 w-2 border-t-2 border-l-2 border-primary" />
-        <div className="absolute top-0 right-0 z-20 h-2 w-2 border-t-2 border-r-2 border-primary" />
-        <div className="absolute bottom-0 left-0 z-20 h-2 w-2 border-b-2 border-l-2 border-primary" />
-        <div className="absolute right-0 bottom-0 z-20 h-2 w-2 border-r-2 border-b-2 border-primary" />
-
+      <div className="group relative mb-12 border-b border-primary/15 pb-8">
         {/* Header */}
-        <div className="mb-3 flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
-          <div className="space-y-1">
-            <h3 className="text-lg font-black tracking-tighter text-foreground uppercase transition-colors group-hover:text-primary">
+        <div className="mb-4 flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+          <div className="space-y-2">
+            <span className="font-mono-data text-mono-data text-primary-container opacity-60">
+              {String(index + 1).padStart(2, "0")} / {String(index + 1).padStart(2, "0")}
+            </span>
+            <h3 className="font-headline-sm text-headline-sm text-primary">
               {education.degree}
             </h3>
-            <div className="flex items-center gap-2">
-              <GraduationCap size={13} className="text-primary opacity-70" />
-              <span className="text-sm font-bold tracking-wide text-foreground uppercase">
-                {education.institution}
-              </span>
-            </div>
-            <div className="flex items-center gap-2">
-              <MapPin size={13} className="text-primary opacity-70" />
-              <span className="font-mono text-xs tracking-widest text-muted-foreground uppercase">
-                {education.location}
-              </span>
+            <div className="flex flex-wrap items-center gap-3">
+              <div className="flex items-center gap-2">
+                <GraduationCap size={14} strokeWidth={1.5} className="text-on-surface-variant" />
+                <span className="text-body-md text-on-surface-variant font-medium">
+                  {education.institution}
+                </span>
+              </div>
+              <div className="flex items-center gap-2 border-l border-primary/15 pl-3">
+                <MapPin size={14} strokeWidth={1.5} className="text-on-surface-variant" />
+                <span className="font-mono-data text-mono-data text-on-surface-variant">
+                  {education.location}
+                </span>
+              </div>
             </div>
           </div>
-          <div className="flex items-center gap-1.5 border border-primary/30 bg-background/50 px-3 py-1.5 font-mono text-xs whitespace-nowrap text-primary">
-            <Calendar size={12} />
-            {education.year}
+          <div className="flex items-center gap-2 border-b border-primary/40 pb-1">
+            <Calendar size={12} strokeWidth={1.5} className="text-on-surface-variant" />
+            <span className="font-mono-data text-mono-data text-on-surface-variant">
+              {education.year}
+            </span>
           </div>
         </div>
 
         {/* Description */}
-        <ul className="space-y-2">
+        <ul className="space-y-3">
           {education.description.map((item, i) => (
             <li
               key={i}
-              className="flex items-start gap-2.5 font-mono text-sm text-muted-foreground"
+              className="flex items-start gap-3 text-body-md text-on-surface-variant"
             >
-              <span className="mt-1.5 h-1.5 w-1.5 shrink-0 bg-primary/60" />
+              <span className="mt-2 h-1 w-1 shrink-0 bg-primary opacity-60" />
               {item}
             </li>
           ))}

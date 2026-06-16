@@ -1,6 +1,4 @@
-import { ExternalLink, ArrowUpRight } from "lucide-react"
-import { motion } from "framer-motion"
-import { cn } from "@/lib/utils"
+import { ExternalLink, ArrowUpRight, ArrowRight } from "lucide-react"
 import type { Project } from "@/types"
 import {
   Dialog,
@@ -10,7 +8,6 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/dialog"
-import { Logo } from "./Logo"
 
 const GithubIcon = ({
   size,
@@ -38,199 +35,118 @@ const GithubIcon = ({
 
 interface ProjectCardProps {
   project: Project
-  index?: number
+  index: number
 }
 
-export function ProjectCard({ project, index = 0 }: ProjectCardProps) {
+export function ProjectCard({ project, index }: ProjectCardProps) {
+  const displayIndex = (index + 1).toString().padStart(2, "0")
 
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <motion.article
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.4, delay: index * 0.1 }}
-          className="group relative flex h-full cursor-pointer flex-col overflow-hidden border-2 border-primary bg-card transition-all duration-300 hover:border-accent hover:shadow-[0_0_20px_rgba(255,0,60,0.3)]"
-        >
-          {/* Corner Brackets */}
-          <div className="absolute top-0 left-0 z-20 h-2 w-2 border-t-2 border-l-2 border-primary group-hover:border-secondary" />
-          <div className="absolute top-0 right-0 z-20 h-2 w-2 border-t-2 border-r-2 border-primary group-hover:border-secondary" />
-          <div className="absolute bottom-0 left-0 z-20 h-2 w-2 border-b-2 border-l-2 border-primary group-hover:border-secondary" />
-          <div className="absolute right-0 bottom-0 z-20 h-2 w-2 border-r-2 border-b-2 border-primary group-hover:border-secondary" />
-
-          {/* Header band */}
-          <div className="relative h-48 overflow-hidden border-b-2 border-primary/20 bg-muted/50 transition-all group-hover:border-accent">
-            {!project.image && (
-              <>
-              {/* Cyber Grid */}
-              <div
-                className="absolute inset-0 opacity-30 group-hover:opacity-0"
-                style={{
-                  backgroundImage:
-                    "linear-gradient(var(--primary) 1px, transparent 1px), linear-gradient(90deg, var(--primary) 1px, transparent 1px)",
-                  backgroundSize: "20px 20px",
-                }}
-              />
-
-              {/* Big initials overlay */}
-              <div className="absolute inset-0 flex items-center justify-center">
-                {!project.image && (
-                  <Logo className="size-32 text-primary"/>
-                )}
-              </div>
-            </>
-            )}
-            {/* Project Image */}
-            {project.image && (
-              <img
-                src={project.image}
-                alt={project.title}
-                className="h-full w-full object-cover object-top transition-all duration-300 group-hover:scale-105"
-              />
-            )}
-            
-            {/* Year badge */}
-            <div className="absolute top-3 left-3 border border-secondary/40 bg-background/80 px-2 py-1 font-mono text-[10px] tracking-widest text-secondary uppercase">
-              DATE: {project.year}
-            </div>
-            {/* Category badge */}
-            <div
-              className={cn(
-                "absolute top-3 right-3 border px-2.5 py-1 text-xs font-bold tracking-tighter uppercase ",
-                "border-secondary/30 bg-background/80 text-secondary"
-              )}
-            >
-              {project.category}
-            </div>
-            {/* Hover overlay with links */}
-            <div className="absolute inset-0 flex items-center justify-center gap-4 bg-background/60 opacity-0 backdrop-blur-sm transition-all duration-300 group-hover:opacity-100">
-              {project.githubUrl && (
-                <a
-                  href={project.githubUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-2 border border-primary bg-primary/20 px-4 py-2 text-xs font-bold tracking-widest text-primary uppercase transition-colors hover:bg-primary hover:text-background"
-                  onClick={(e) => e.stopPropagation()}
-                >
-                  <GithubIcon size={14} />
-                  Code
-                </a>
-              )}
-              {project.liveUrl && (
-                <a
-                  href={project.liveUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-2 border border-primary bg-primary px-4 py-2 text-xs font-bold tracking-widest text-background uppercase transition-colors hover:bg-transparent hover:text-primary"
-                  onClick={(e) => e.stopPropagation()}
-                >
-                  <ExternalLink size={14} />
-                  Live
-                </a>
-              )}
-            </div>
+        <article className="project-row group py-12 border-b border-primary/15 flex flex-col md:flex-row md:items-start transition-all cursor-pointer hover:bg-primary/5 px-gutter md:px-4">
+          {/* Index column */}
+          <div className="md:w-1/12 font-mono-data text-mono-data text-primary/40 mb-4 md:mb-0">
+            {displayIndex}
           </div>
 
-          {/* Content */}
-          <div className="flex flex-1 flex-col gap-3 p-5">
-            <div className="flex items-start justify-between gap-2">
-              <h3 className="text-lg font-black tracking-tighter text-foreground uppercase transition-colors duration-200 group-hover:text-accent">
-                {project.title}
-              </h3>
+          {/* Title and Description column */}
+          <div className="md:w-5/12 pr-12">
+            <h3 className="font-headline-sm text-headline-sm text-primary mb-3 flex items-center gap-2 group-hover:text-primary transition-colors">
+              {project.title}
               <ArrowUpRight
-                size={18}
-                className="mt-0.5 shrink-0 text-accent opacity-50 transition-all duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:opacity-100"
+                size={16}
+                className="opacity-0 group-hover:opacity-100 transition-opacity text-primary"
               />
-            </div>
-
-            <p className="line-clamp-3 font-mono text-sm leading-relaxed text-muted-foreground">
+            </h3>
+            <p className="font-body-md text-body-md text-on-surface-variant max-w-md">
               {project.description}
             </p>
-
-            {/* Tags */}
-            <div className="mt-auto flex flex-wrap gap-1.5 pt-2">
-              {project.tags.slice(0, 4).map((tag) => (
-                <span
-                  key={tag}
-                  className="border border-secondary/30 bg-secondary/5 px-2 py-0.5 font-mono text-[10px] tracking-tighter text-secondary uppercase"
-                >
-                  {tag}
-                </span>
-              ))}
-              {project.tags.length > 4 && (
-                <span className="border border-secondary/30 bg-secondary/5 px-2 py-0.5 font-mono text-[10px] text-muted-foreground uppercase">
-                  +{project.tags.length - 4}
-                </span>
-              )}
-            </div>
           </div>
-        </motion.article>
+
+          {/* Tech stack column */}
+          <div className="md:w-4/12 flex flex-wrap gap-2 mt-6 md:mt-0 items-start">
+            {project.tags.map((tag) => (
+              <span
+                key={tag}
+                className="font-mono-data text-mono-data px-3 py-1 border border-primary/20 text-primary"
+              >
+                {tag}
+              </span>
+            ))}
+          </div>
+
+          {/* Action column */}
+          <div className="md:w-2/12 flex md:justify-end mt-8 md:mt-0">
+            <span className="inline-flex items-center font-label-caps text-label-caps text-primary border-b border-primary/0 group-hover:border-primary pb-1 transition-all">
+              CASE STUDY
+              <ArrowRight
+                size={18}
+                className="ml-2 project-arrow transition-transform duration-300 group-hover:translate-x-1"
+              />
+            </span>
+          </div>
+        </article>
       </DialogTrigger>
-      <DialogContent className="max-w-2xl gap-0 overflow-hidden rounded-none border-2 border-primary bg-card p-0">
-        <div className="relative flex h-40 w-full items-center justify-center border-b-2 border-primary/20 bg-muted/30 overflow-hidden">
-          {project.image && (
+
+      <DialogContent className="max-w-2xl gap-0 overflow-hidden rounded-none border border-primary bg-background p-0">
+        <div className="relative flex h-48 w-full items-center justify-center border-b border-primary/15 bg-surface-container overflow-hidden">
+          {project.image ? (
             <img
               src={project.image}
               alt={project.title}
-              className="h-full w-full object-cover object-top transition-all duration-300 group-hover:scale-105"
+              className="h-full w-full object-cover object-top filter grayscale hover:grayscale-0 transition-all duration-300"
             />
+          ) : (
+            <img src="/logo.svg" alt="logo" className="size-12 object-cover object-top filter grayscale hover:grayscale-0 transition-all duration-300" />
           )}
-          {!project.image && (
-            <Logo className="size-32 text-primary"/>
-          )}
-         
+
           <div className="absolute top-4 left-4">
-            <div
-              className={cn(
-                "border px-2.5 py-1 text-xs font-bold tracking-tighter uppercase",
-                "border-secondary/30 bg-background/80 text-secondary"
-              )}
-            >
+            <div className="border border-primary/20 bg-background px-2.5 py-1 text-xs font-bold font-label-caps text-primary uppercase">
               {project.category}
             </div>
           </div>
         </div>
-        <div className="space-y-6 p-6">
+
+        <div className="space-y-6 p-8">
           <DialogHeader>
-            <DialogTitle className="text-2xl font-black tracking-tighter text-foreground uppercase">
+            <DialogTitle className="text-2xl font-bold font-headline-sm text-primary uppercase">
               {project.title}
             </DialogTitle>
-            <DialogDescription className="font-mono text-xs tracking-widest text-primary uppercase">
-              <h4 className="text-xs font-bold tracking-widest text-primary uppercase">
-              Deployment_Year:
-              <span className="text-secondary"> {project.year}</span>
-            </h4>
+            <DialogDescription className="font-mono-data text-xs text-primary/60">
+              DEPLOYMENT YEAR: {project.year}
             </DialogDescription>
           </DialogHeader>
 
-          <div className="space-y-3">
-            <h4 className="text-xs font-bold tracking-widest text-primary uppercase">
-              Project_Description
+          <div className="space-y-2">
+            <h4 className="font-label-caps text-label-caps text-primary/70">
+              Project Description
             </h4>
-            <p className="font-mono text-sm leading-relaxed text-muted-foreground">
+            <p className="font-body-md text-body-md text-on-surface-variant leading-relaxed">
               {project.description}
             </p>
           </div>
 
-          <div className="space-y-3">
-            <h4 className="text-xs font-bold tracking-widest text-primary uppercase">
-              Role_&_Contributions
-            </h4>
-            <p className="font-mono text-sm leading-relaxed text-muted-foreground">
-              {project.longDescription}
-            </p>
-          </div>
+          {project.longDescription && (
+            <div className="space-y-2">
+              <h4 className="font-label-caps text-label-caps text-primary/70">
+                Key Deliverables & Responsibilities
+              </h4>
+              <p className="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+                {project.longDescription}
+              </p>
+            </div>
+          )}
 
-          <div className="space-y-3">
-            <h4 className="text-xs font-bold tracking-widest text-primary uppercase">
-              Tech_Stack
+          <div className="space-y-2">
+            <h4 className="font-label-caps text-label-caps text-primary/70">
+              Technology Stack
             </h4>
             <div className="flex flex-wrap gap-2">
               {project.tags.map((tag) => (
                 <span
                   key={tag}
-                  className="border border-secondary/30 bg-secondary/5 px-2 py-0.5 font-mono text-[10px] tracking-tighter text-secondary uppercase"
+                  className="font-mono-data text-mono-data px-3 py-1 border border-primary/20 text-primary"
                 >
                   {tag}
                 </span>
@@ -238,16 +154,16 @@ export function ProjectCard({ project, index = 0 }: ProjectCardProps) {
             </div>
           </div>
 
-          <div className="flex items-center justify-end gap-3 pt-4">
+          <div className="flex items-center justify-end gap-3 pt-6 border-t border-primary/10">
             {project.githubUrl && (
               <a
                 href={project.githubUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 border border-primary/40 bg-transparent px-4 py-2 text-xs font-bold tracking-widest text-primary uppercase transition-all hover:bg-primary hover:text-background"
+                className="flex items-center gap-2 border border-primary px-6 py-2 text-xs font-bold font-label-caps text-primary hover:bg-primary hover:text-background transition-all"
               >
                 <GithubIcon size={14} />
-                Source Code
+                SOURCE CODE
               </a>
             )}
             {project.liveUrl && (
@@ -255,10 +171,10 @@ export function ProjectCard({ project, index = 0 }: ProjectCardProps) {
                 href={project.liveUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 border border-primary bg-primary px-4 py-2 text-xs font-bold tracking-widest text-background uppercase transition-all hover:bg-transparent hover:text-primary"
+                className="flex items-center gap-2 bg-primary-container px-6 py-2 text-xs font-bold font-label-caps text-on-primary hover:opacity-90 transition-opacity"
               >
                 <ExternalLink size={14} />
-                Live Preview
+                LIVE PREVIEW
               </a>
             )}
           </div>

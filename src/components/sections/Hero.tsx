@@ -1,8 +1,6 @@
 import { motion } from "framer-motion"
-import { ArrowRight, FileText, ArrowDown } from "lucide-react"
+import { ArrowRight } from "lucide-react"
 import { OWNER } from "@/utils/constants"
-import { SocialLinks } from "@/components/shared/SocialLinks"
-import { Logo } from "@/components/shared/Logo"
 
 export function Hero() {
   const containerVariants = {
@@ -17,10 +15,10 @@ export function Hero() {
   } as const
 
   const itemVariants = {
-    hidden: { opacity: 0, x: -20 },
+    hidden: { opacity: 0, y: 20 },
     visible: {
       opacity: 1,
-      x: 0,
+      y: 0,
       transition: {
         type: "spring",
         stiffness: 100,
@@ -32,150 +30,144 @@ export function Hero() {
   return (
     <section
       id="home"
-      className="relative mt-8 flex min-h-svh items-center justify-center overflow-hidden bg-transparent lg:mt-0"
+      className="relative min-h-screen flex items-center overflow-hidden bg-primary-container text-surface-bright selection:bg-on-primary-container selection:text-primary-container"
     >
-      {/* Cyber HUD Frame - Top Left */}
-      <div className="absolute top-10 left-10 z-20 hidden md:block">
-        <div className="h-12 w-12 border-t-2 border-l-2 border-primary opacity-50" />
-        <span className="absolute top-[-4px] left-18 animate-pulse font-mono text-[10px] tracking-tighter text-primary uppercase">
-          System_Active // 0x44A1
-        </span>
-      </div>
+      {/* Floating Atmospheric Elements */}
+      <div className="absolute top-1/4 -left-20 w-64 h-64 bg-on-tertiary-container/5 blur-[100px] rounded-full pointer-events-none"></div>
+      <div className="absolute bottom-1/4 right-0 w-96 h-96 bg-primary-fixed-dim/5 blur-[120px] rounded-full pointer-events-none"></div>
 
-      {/* Cyber HUD Frame - Bottom Right */}
-      <div className="absolute right-10 bottom-10 z-20 hidden md:block">
-        <div className="h-12 w-12 border-r-2 border-b-2 border-secondary opacity-50" />
-        <span className="absolute right-12 bottom-[-2px] animate-pulse font-mono text-[10px] tracking-tighter text-secondary uppercase">
-          Secure_Link // Stable
-        </span>
-      </div>
-
-      <div className="z-10 mx-auto flex w-full max-w-6xl flex-col items-center gap-12 px-4 py-12 md:flex-row md:gap-16 md:px-8 md:py-24">
-        {/* Content Column */}
+      <div className="max-w-container-max mx-auto px-gutter w-full grid grid-cols-1 md:grid-cols-12 gap-12 items-center py-24 md:py-0 z-10">
+        {/* Hero Content: Column 1-7 */}
         <motion.div
           variants={containerVariants}
           initial="hidden"
           animate="visible"
-          className="flex flex-1 flex-col items-center gap-6 text-center md:items-start md:text-left"
+          className="md:col-span-7 space-y-8 flex flex-col items-start text-left"
         >
-          {/* Greeting Badge */}
-          <motion.div
-            variants={itemVariants}
-            className="relative inline-flex items-center gap-2 border border-secondary bg-secondary/10 px-4 py-1.5 font-mono text-xs font-bold tracking-widest text-secondary uppercase shadow-[0_0_10px_rgba(252,238,10,0.3)]"
-          >
-            {/* <span className="relative mr-2 flex h-2 w-2">
-              <span className="absolute inset-0 animate-ping rounded-full bg-secondary" />
-              <span className="relative rounded-full bg-secondary" />
-            </span> */}
-            <span>Identity Verified: {OWNER.name}</span>
-          </motion.div>
-
-          {/* Title */}
-          <motion.div variants={itemVariants} className="space-y-3">
-            <h1 className="relative text-4xl leading-[1.1] font-black tracking-tighter text-foreground uppercase sm:text-6xl md:text-8xl">
-              <span className="block text-foreground">Crafting</span>
-              <span className="animate-neon-flicker block text-primary">
-                Digital
-              </span>
-              <span className="block text-foreground">Experiences</span>
-            </h1>
-            <div className="h-1 w-24 bg-primary shadow-[0_0_10px_var(--primary)]" />
-            <p className="max-w-xl font-mono text-lg font-bold tracking-wide text-secondary uppercase">
-              {OWNER.title}
-            </p>
-          </motion.div>
-
-          {/* Tagline */}
+          <div className="space-y-4">
+            <motion.span
+              variants={itemVariants}
+              className="font-label-caps text-label-caps text-on-tertiary-container tracking-widest block opacity-70"
+            >
+              {OWNER.title.toUpperCase()}
+            </motion.span>
+            <motion.h1
+              variants={itemVariants}
+              className="font-headline-lg text-headline-lg-mobile md:text-headline-lg leading-tight text-surface-bright max-w-2xl"
+            >
+              Engineering Scalable Digital Solutions.
+            </motion.h1>
+          </div>
           <motion.p
             variants={itemVariants}
-            className="max-w-lg font-mono text-base leading-relaxed text-muted-foreground"
+            className="font-body-lg text-body-lg text-on-primary-container max-w-xl"
           >
             {OWNER.tagline}
           </motion.p>
-
-          {/* Actions */}
           <motion.div
             variants={itemVariants}
-            className="flex w-full flex-wrap items-center justify-center gap-6 md:justify-start"
+            className="flex flex-wrap gap-4 pt-4 w-full sm:w-auto"
           >
             <a
               href="#projects"
-              className="group relative inline-flex items-center justify-center gap-2 overflow-hidden border-2 border-primary bg-primary px-8 py-3 text-sm font-black tracking-widest text-background uppercase transition-all duration-200 hover:bg-transparent hover:text-primary active:scale-95"
+              className="bg-surface-bright text-primary-container font-label-caps text-label-caps px-10 py-4 hover:opacity-90 transition-opacity flex items-center justify-center gap-2 group w-full sm:w-auto rounded-none"
             >
-              <span className="relative z-10">View Work</span>
+              View Projects
               <ArrowRight
-                size={16}
-                className="relative z-10 transition-transform duration-200 group-hover:translate-x-1"
+                size={18}
+                className="group-hover:translate-x-1 transition-transform"
               />
-              <div className="absolute inset-0 origin-left scale-x-0 bg-primary opacity-20 transition-transform duration-300 group-hover:scale-x-100" />
             </a>
             <a
-              href={OWNER.resumeUrl}
-              download="Alexander_Rivelino_Aldo_Aldiero_Resume.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group inline-flex items-center justify-center gap-2 border-2 border-white/20 bg-transparent px-8 py-3 text-sm font-bold tracking-widest text-foreground uppercase transition-all duration-200 hover:border-secondary hover:text-secondary active:scale-95"
+              href="#contact"
+              className="border border-on-primary-container/30 text-surface-bright font-label-caps text-label-caps px-10 py-4 hover:bg-on-primary-container/10 transition-colors flex items-center justify-center w-full sm:w-auto rounded-none"
             >
-              <FileText size={16} />
-              Resume
+              Get in Touch
             </a>
           </motion.div>
-
-          {/* Social Links floating panel */}
-          <motion.div
-            variants={itemVariants}
-            className="flex items-center gap-4 pt-6"
-          >
-            <span className="font-mono text-[10px] tracking-widest text-muted-foreground uppercase opacity-70">
-              External_Nodes
-            </span>
-            <div className="h-px w-12 bg-primary/30" />
-            <SocialLinks variant="icon" iconSize={18} />
-          </motion.div>
         </motion.div>
 
-        {/* Hero Illustration Column */}
-
-        {/* Logo Emblem */}
+        {/* Asymmetric Graphic: Column 8-12 */}
         <motion.div
-          variants={itemVariants}
-          initial={{ opacity: 0, scale: 0.9 }}
+          initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8, ease: "easeOut", delay: 0.4 }}
-          className="relative flex hidden aspect-square w-full max-w-md flex-1 animate-pulse items-center justify-center md:aspect-auto md:max-w-none lg:flex"
+          transition={{ duration: 0.8, delay: 0.4 }}
+          className="md:col-span-5 relative hidden md:block"
         >
-          <div className="absolute top-0 left-0 h-2.5 w-2.5 border-t-2 border-l-2 border-secondary" />
-          <div className="absolute top-0 right-0 h-2.5 w-2.5 border-t-2 border-r-2 border-secondary" />
-          <div className="absolute bottom-0 left-0 h-2.5 w-2.5 border-b-2 border-l-2 border-secondary" />
-          <div className="absolute right-0 bottom-0 h-2.5 w-2.5 border-r-2 border-b-2 border-secondary" />
+          <div className="relative w-full aspect-square bg-on-primary-container/5 border border-on-primary-container/10 p-8 flex flex-col justify-between overflow-hidden group">
+            {/* Subtle Tech Decor */}
+            <div className="absolute top-0 right-0 p-4 opacity-20">
+              <span className="font-mono-data text-mono-data text-on-primary-container">
+                0x7F // CLOUD_ARCH
+              </span>
+            </div>
 
-          {/* Scanning line for logo */}
-          <div className="animate-scanline pointer-events-none absolute inset-x-0 top-0 h-0.5 bg-secondary/40 opacity-0 group-hover:opacity-100" />
+            {/* Code Visualizer */}
+            <div className="font-mono-data text-mono-data text-on-primary-container/60 space-y-2 select-none pointer-events-none">
+              <div className="flex gap-4">
+                <span className="text-on-tertiary-container/40">01</span>
+                <span>class Infrastructure &#123;</span>
+              </div>
+              <div className="flex gap-4 pl-4">
+                <span className="text-on-tertiary-container/40">02</span>
+                <span className="text-on-tertiary-container">constructor() &#123;</span>
+              </div>
+              <div className="flex gap-4 pl-8">
+                <span className="text-on-tertiary-container/40">03</span>
+                <span>this.scalability = 'infinite';</span>
+              </div>
+              <div className="flex gap-4 pl-8">
+                <span className="text-on-tertiary-container/40">04</span>
+                <span>this.reliability = '99.99%';</span>
+              </div>
+              <div className="flex gap-4 pl-4">
+                <span className="text-on-tertiary-container/40">05</span>
+                <span>&#125;</span>
+              </div>
+              <div className="flex gap-4">
+                <span className="text-on-tertiary-container/40">06</span>
+                <span className="text-on-tertiary-container">optimize(systems) &#123;</span>
+              </div>
+              <div className="flex gap-4 pl-4">
+                <span className="text-on-tertiary-container/40">07</span>
+                <span>return systems.map(s =&gt; simplify(s));</span>
+              </div>
+              <div className="flex gap-4">
+                <span className="text-on-tertiary-container/40">08</span>
+                <span>&#125;</span>
+              </div>
+            </div>
 
-          <Logo
-            className="h-full w-full text-secondary transition-all duration-500 ease-out group-hover:scale-110 group-hover:drop-shadow-[0_0_8px_rgba(252,238,10,0.8)]"
-            fillColor="currentColor"
-          />
+            {/* Diagram Visual */}
+            <div className="mt-8 relative h-48 border-t border-on-primary-container/10 pt-8">
+              <div className="flex justify-between items-end gap-2 h-full px-4">
+                <div className="w-1/4 h-[60%] border border-on-primary-container/20 bg-on-primary-container/5 relative group-hover:bg-on-tertiary-container/10 transition-colors">
+                  <span className="absolute -top-6 left-0 font-mono-data text-[10px] opacity-40">
+                    NODE_A
+                  </span>
+                </div>
+                <div className="w-1/4 h-[90%] border border-on-primary-container/20 bg-on-primary-container/5 relative group-hover:bg-on-tertiary-container/10 transition-colors">
+                  <span className="absolute -top-6 left-0 font-mono-data text-[10px] opacity-40">
+                    NODE_B
+                  </span>
+                </div>
+                <div className="w-1/4 h-[40%] border border-on-primary-container/20 bg-on-primary-container/5 relative group-hover:bg-on-tertiary-container/10 transition-colors">
+                  <span className="absolute -top-6 left-0 font-mono-data text-[10px] opacity-40">
+                    NODE_C
+                  </span>
+                </div>
+                <div className="w-1/4 h-[75%] border border-on-primary-container/20 bg-on-primary-container/5 relative group-hover:bg-on-tertiary-container/10 transition-colors">
+                  <span className="absolute -top-6 left-0 font-mono-data text-[10px] opacity-40">
+                    NODE_D
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+          {/* Abstract Layered Box */}
+          <div className="absolute -bottom-6 -right-6 w-full h-full border border-on-primary-container/5 -z-10"></div>
         </motion.div>
       </div>
-
-      {/* Scroll Down Indicator */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1, delay: 1.2 }}
-        className="absolute bottom-12 left-1/2 z-10 flex -translate-x-1/2 cursor-pointer flex-col items-center gap-1.5 lg:bottom-8"
-      >
-        <a
-          href="#about"
-          className="group flex flex-col items-center text-muted-foreground transition-colors hover:text-primary"
-        >
-          <span className="text-xxs font-mono tracking-[0.4em] uppercase group-hover:animate-pulse">
-            Initiate_Descent
-          </span>
-          <ArrowDown size={14} className="mt-1 animate-bounce" />
-        </a>
-      </motion.div>
     </section>
   )
 }

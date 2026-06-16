@@ -14,70 +14,57 @@ export function ProjectFilterSection({ projects }: ProjectFilterSectionProps) {
 
   const categories = ["All", ...new Set(projects.map((p) => p.category))]
 
-  const filteredProjects = projects.sort((a, b) => b.year - a.year).filter((p) => {
-    if (activeFilter === "All") return true
-    return p.category === activeFilter
-  })
+  const filteredProjects = projects
+    .sort((a, b) => b.year - a.year)
+    .filter((p) => {
+      if (activeFilter === "All") return true
+      return p.category === activeFilter
+    })
 
   return (
     <>
-      {/* Filter Navigation - Frequency Tuner Style */}
-      <div className="mx-auto mb-12 flex max-w-lg flex-wrap items-center justify-center gap-0 rounded-none border border-primary/30 bg-card/50 p-1">
+      {/* Filter Navigation - Minimalist Inline Links */}
+      <div className="flex flex-wrap items-center gap-8 mb-12 border-b border-primary/10 pb-4">
         {categories.map((cat) => {
           const isActive = activeFilter === cat
           return (
             <button
               key={cat}
               onClick={() => setActiveFilter(cat)}
-              className="relative cursor-pointer px-4 py-2 font-mono text-xs font-bold tracking-widest uppercase transition-all duration-300"
-            >
-              <span
-                className={cn(
-                  "relative z-10 transition-colors duration-300",
-                  isActive
-                    ? "text-primary"
-                    : "text-muted-foreground hover:text-secondary"
-                )}
-              >
-                {cat}
-              </span>
-              {isActive && (
-                <motion.span
-                  layoutId="activeFilterTab"
-                  className="absolute inset-0 -z-10 bg-primary shadow-[0_0_10px_var(--primary)]"
-                  transition={{ duration: 0.2, ease: "easeInOut" }}
-                />
+              className={cn(
+                "font-label-caps text-label-caps pb-2 transition-all duration-200 cursor-pointer border-b-2",
+                isActive
+                  ? "text-primary border-primary font-bold"
+                  : "text-on-surface-variant/65 border-transparent hover:text-primary hover:border-primary/30"
               )}
+            >
+              {cat}
             </button>
           )
         })}
       </div>
 
-      {/* Project Grid */}
-      <motion.div
-        layout
-        className="mb-16 grid grid-cols-1 gap-6 md:grid-cols-2 md:gap-8 lg:grid-cols-3"
-      >
+      {/* Project List: Structured as technical rows */}
+      <div className="flex flex-col border-t border-primary/15 mb-16">
         <AnimatePresence mode="popLayout">
           {filteredProjects.map((project, index) => (
             <motion.div
               key={project.id}
               layout
-              initial={{ opacity: 0, y: 10 }}
+              initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: 10 }}
-              transition={{ duration: 0.3, ease: "easeOut" }}
+              exit={{ opacity: 0, y: 15 }}
+              transition={{ duration: 0.4, ease: "easeOut" }}
             >
               <ProjectCard project={project} index={index} />
             </motion.div>
           ))}
         </AnimatePresence>
-      </motion.div>
+      </div>
     </>
   )
 }
 
-// Helper for class joining since I'm using it in the content
 function cn(...classes: (string | boolean | undefined)[]) {
   return classes.filter(Boolean).join(" ")
 }

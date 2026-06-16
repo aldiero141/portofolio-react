@@ -6,51 +6,57 @@ export function Experience() {
   return (
     <section
       id="experience"
-      className="relative overflow-hidden bg-transparent py-20 md:py-28"
+      className="bg-[#EAE0CF] py-20 md:py-section-padding"
     >
-      {/* Cyber Backdrop Decoration */}
-      <div className="absolute bottom-0 left-0 -z-10 h-1/2 w-1/3 bg-primary/5 opacity-50 blur-[100px]" />
+      <div className="mx-auto max-w-[1280px] px-5 md:px-gutter">
+        <div className="grid grid-cols-1 gap-gutter md:grid-cols-12">
+          {/* Header Sidebar */}
+          <div className="md:col-span-4">
+            <div className="sticky top-32 flex flex-col items-start gap-4">
+              <motion.span
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 0.6, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4 }}
+                className="font-label-caps text-label-caps text-primary-container"
+              >
+                Experience
+              </motion.span>
+              <motion.h1
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.1 }}
+                className="font-headline-lg-mobile text-primary leading-tight tracking-tighter md:text-headline-md"
+              >
+                Selected Engagements.
+              </motion.h1>
+              <motion.div
+                initial={{ width: 0 }}
+                whileInView={{ width: 96 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                className="h-1 bg-primary-container"
+              />
+              <p className="text-on-surface-variant max-w-xs pt-4 text-body-md">
+                A timeline of the teams, products, and experiences that have shaped my career.
+              </p>
+            </div>
+          </div>
 
-      <div className="mx-auto max-w-4xl px-4 md:px-8">
-        {/* Section Heading - HUD Style */}
-        <div className="mb-16 flex flex-col items-center gap-2 text-center">
-          <motion.span
-            initial={{ opacity: 0, y: 15 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="font-mono text-xs font-bold tracking-widest text-primary uppercase"
-          >
-            [ 04_EXPERIENCE_LOG ]
-          </motion.span>
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-            className="font-heading text-3xl font-black tracking-tighter text-foreground uppercase sm:text-4xl"
-          >
-            Work Experience
-          </motion.h2>
-          <motion.div
-            initial={{ width: 0 }}
-            whileInView={{ width: "80px" }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="mt-2 h-1 bg-secondary shadow-[0_0_10px_var(--secondary)]"
-          />
-        </div>
-
-        {/* Timeline Grid Container */}
-        <div className="relative">
-          {EXPERIENCES.map((experience, index) => (
-            <ExperienceCard
-              key={experience.id}
-              experience={experience}
-              index={index}
-              isLast={index === EXPERIENCES.length - 1}
-            />
-          ))}
+          {/* Timeline */}
+          <div className="md:col-span-8">
+            <div className="relative">
+              {EXPERIENCES.map((experience, index) => (
+                <ExperienceCard
+                  key={experience.id}
+                  experience={experience}
+                  index={index}
+                  isLast={index === EXPERIENCES.length - 1}
+                />
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </section>

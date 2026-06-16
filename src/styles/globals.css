@@ -1,6 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
 @import "tailwindcss";
 @import "tw-animate-css";
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=JetBrains+Mono:wght@400;700&display=swap');
 
 @custom-variant dark (&:is(.dark *));
 @source "../../../apps/**/*.{ts,tsx}";
@@ -8,138 +8,208 @@
 @source "../**/*.{ts,tsx}";
 
 @theme inline {
-    --font-heading: 'Orbitron', sans-serif;
-    --font-sans: 'JetBrains Mono', monospace;
-    --color-sidebar-ring: var(--sidebar-ring);
-    --color-sidebar-border: var(--sidebar-border);
-    --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
-    --color-sidebar-accent: var(--sidebar-accent);
-    --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
-    --color-sidebar-primary: var(--sidebar-primary);
-    --color-sidebar-foreground: var(--sidebar-foreground);
-    --color-sidebar: var(--sidebar);
-    --color-chart-5: var(--chart-5);
-    --color-chart-4: var(--chart-4);
-    --color-chart-3: var(--chart-3);
-    --color-chart-2: var(--chart-2);
-    --color-chart-1: var(--chart-1);
-    --color-ring: var(--ring);
-    --color-input: var(--input);
-    --color-border: var(--border);
-    --color-destructive: var(--destructive);
-    --color-accent-foreground: var(--accent-foreground);
-    --color-accent: var(--accent);
-    --color-muted-foreground: var(--muted-foreground);
-    --color-muted: var(--muted);
-    --color-secondary-foreground: var(--secondary-foreground);
-    --color-secondary: var(--secondary);
-    --color-primary-foreground: var(--primary-foreground);
-    --color-primary: var(--primary);
-    --color-popover-foreground: var(--popover-foreground);
-    --color-popover: var(--popover);
-    --color-card-foreground: var(--card-foreground);
-    --color-card: var(--card);
-    --color-foreground: var(--foreground);
-    --color-background: var(--background);
-    --radius-sm: calc(var(--radius) * 0.6);
-    --radius-md: calc(var(--radius) * 0.8);
-    --radius-lg: var(--radius);
-    --radius-xl: calc(var(--radius) * 1.4);
-    --radius-2xl: calc(var(--radius) * 1.8);
-    --radius-3xl: calc(var(--radius) * 2.2);
-    --radius-4xl: calc(var(--radius) * 2.6);
+  --font-heading: 'Geist', sans-serif;
+  --font-sans: 'Geist', sans-serif;
+  --font-body-lg: 'Geist', sans-serif;
+  --font-headline-md: 'Geist', sans-serif;
+  --font-headline-lg: 'Geist', sans-serif;
+  --font-label-caps: 'Geist', sans-serif;
+  --font-headline-sm: 'Geist', sans-serif;
+  --font-headline-lg-mobile: 'Geist', sans-serif;
+  --font-mono-data: 'JetBrains Mono', monospace;
+  --font-body-md: 'Geist', sans-serif;
+
+  --color-surface-container: #f7eddb;
+  --color-on-primary: #ffffff;
+  --color-surface-dim: #e3d9c8;
+  --color-error: #ba1a1a;
+  --color-tertiary-fixed-dim: #abccd9;
+  --color-surface-container-highest: #ebe1d0;
+  --color-on-surface: #1f1b11;
+  --color-inverse-surface: #353024;
+  --color-on-tertiary-fixed: #001f28;
+  --color-on-primary-fixed: #081d30;
+  --color-on-error-container: #93000a;
+  --color-error-container: #ffdad6;
+  --color-secondary-container: #badefd;
+  --color-on-tertiary: #ffffff;
+  --color-outline: #74777d;
+  --color-background: #fff8f1;
+  --color-on-secondary-container: #40637d;
+  --color-surface-bright: #fff8f1;
+  --color-primary-fixed-dim: #b5c8e2;
+  --color-secondary: #3f627c;
+  --color-on-surface-variant: #43474c;
+  --color-secondary-fixed-dim: #a7cbe9;
+  --color-on-tertiary-fixed-variant: #2c4b56;
+  --color-on-error: #ffffff;
+  --color-primary-fixed: #d1e4fe;
+  --color-surface: #fff8f1;
+  --color-surface-container-lowest: #ffffff;
+  --color-surface-tint: #4d6076;
+  --color-surface-container-high: #f1e7d6;
+  --color-tertiary-container: #163742;
+  --color-on-background: #1f1b11;
+  --color-on-primary-container: #899db5;
+  --color-outline-variant: #c4c6cd;
+  --color-primary-container: #213448;
+  --color-surface-variant: #ebe1d0;
+  --color-on-primary-fixed-variant: #36485d;
+  --color-on-secondary-fixed: #001e2f;
+  --color-surface-container-low: #fdf2e1;
+  --color-secondary-fixed: #cae6ff;
+  --color-tertiary-fixed: #c7e8f5;
+  --color-inverse-primary: #b5c8e2;
+  --color-primary: #0a1f32;
+  --color-tertiary: #00212b;
+  --color-on-secondary: #ffffff;
+  --color-inverse-on-surface: #faf0de;
+  --color-on-secondary-fixed-variant: #264a63;
+  --color-on-tertiary-container: #80a0ad;
+
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+
+  --spacing-gutter: 32px;
+  --spacing-section-padding: 120px;
+  --spacing-margin-mobile: 20px;
+  --spacing-container-max: 1280px;
+  --spacing-unit: 8px;
+
+  --radius-default: 0px;
+  --radius-lg: 0px;
+  --radius-xl: 0px;
+  --radius-2xl: 0px;
+  --radius-3xl: 0px;
+  --radius-4xl: 0px;
+  --radius-sm: 0px;
+  --radius-md: 0px;
 }
 
 :root {
-    /* Cyberpunk Palette - Dark by Default */
-    --background: #050505;
-    --foreground: #e0e0e0;
-    --card: #0d0d0d;
-    --card-foreground: #e0e0e0;
-    --popover: #0d0d0d;
-    --popover-foreground: #e0e0e0;
-    --primary: #ff003c; /* Cyber Red/Magenta */
-    --primary-foreground: #ffffff;
-    --secondary: #fcee0a; /* Electric Yellow */
-    --secondary-foreground: #050505;
-    --muted: #1a1a1a;
-    --muted-foreground: #888888;
-    --accent: #00f3ff; /* Neon Cyan */
-    --accent-foreground: #050505;
-    --destructive: #ff003c;
-    --border: #1a1a1a;
-    --input: #1a1a1a;
-    --ring: #ff003c;
-    --radius: 0px; /* Sharp industrial edges */
-    
-    --sidebar: #0d0d0d;
-    --sidebar-foreground: #e0e0e0;
-    --sidebar-primary: #ff003c;
-    --sidebar-primary-foreground: #ffffff;
-    --sidebar-accent: #1a1a1a;
-    --sidebar-accent-foreground: #ff003c;
-    --sidebar-border: #1a1a1a;
-    --sidebar-ring: #ff003c;
+  --background: #fff8f1;
+  --foreground: #1f1b11;
+  --card: #fff8f1;
+  --card-foreground: #1f1b11;
+  --popover: #fff8f1;
+  --popover-foreground: #1f1b11;
+  --primary: #0a1f32;
+  --primary-foreground: #ffffff;
+  --secondary: #3f627c;
+  --secondary-foreground: #ffffff;
+  --muted: #fdf2e1;
+  --muted-foreground: #43474c;
+  --accent: #00212b;
+  --accent-foreground: #ffffff;
+  --destructive: #ba1a1a;
+  --border: rgba(10, 31, 50, 0.15);
+  --input: #fff8f1;
+  --ring: #0a1f32;
+  --radius: 0px;
 }
 
-.dark {
-    /* Keep it consistent for dark mode explicitly if needed */
+/* Custom text sizes & styles as utility classes */
+@utility text-body-lg {
+  font-size: 18px;
+  line-height: 1.6;
+  font-weight: 400;
+}
+@utility text-headline-md {
+  font-size: 32px;
+  line-height: 1.3;
+  letter-spacing: -0.02em;
+  font-weight: 500;
+}
+@utility text-headline-lg {
+  font-size: 64px;
+  line-height: 1.1;
+  letter-spacing: -0.04em;
+  font-weight: 600;
+}
+@utility text-label-caps {
+  font-size: 12px;
+  line-height: 1.0;
+  letter-spacing: 0.1em;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+@utility text-headline-sm {
+  font-size: 24px;
+  line-height: 1.4;
+  font-weight: 500;
+}
+@utility text-headline-lg-mobile {
+  font-size: 36px;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  font-weight: 600;
+}
+@utility text-mono-data {
+  font-size: 14px;
+  line-height: 1.5;
+  font-weight: 400;
+}
+@utility text-body-md {
+  font-size: 16px;
+  line-height: 1.6;
+  font-weight: 400;
 }
 
-@keyframes glitch {
-    0% { transform: translate(0); }
-    20% { transform: translate(-2px, 2px); }
-    40% { transform: translate(-2px, -2px); }
-    60% { transform: translate(2px, 2px); }
-    80% { transform: translate(2px, -2px); }
-    100% { transform: translate(0); }
-}
-
-@keyframes neon-flicker {
-    0%, 19.999%, 22%, 62.999%, 64%, 64.999%, 70%, 100% {
-        opacity: 1;
-        text-shadow: 0 0 7px #ff003c, 0 0 10px #ff003c;
-    }
-    20%, 63%, 64.001% {
-        opacity: 0.4;
-        text-shadow: none;
-    }
-}
-
-@keyframes grid-move {
-    0% { background-position: 0 0; }
-    100% { background-position: 0 64px; }
-}
-
-@keyframes scanline {
-    0% { transform: translateY(-100%); }
-    100% { transform: translateY(100vh); }
-}
-
-.animate-glitch {
-    animation: glitch 0.2s cubic-bezier(.25,.46,.45,.94) infinite;
-}
-
-.animate-neon-flicker {
-    animation: neon-flicker 3s linear infinite;
+/* Architectural Logic: custom interactive utility classes */
+@layer components {
+  .input-underline {
+    border: none;
+    border-bottom: 1px solid rgba(10, 31, 50, 0.15);
+    background: transparent;
+    transition: border-color 0.3s ease;
+  }
+  .input-underline:focus {
+    outline: none;
+    border-bottom-color: #0a1f32;
+    box-shadow: none;
+  }
+  .link-underline {
+    position: relative;
+  }
+  .link-underline::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 1px;
+    bottom: -2px;
+    left: 0;
+    background-color: currentColor;
+    transition: width 0.3s ease;
+  }
+  .link-underline:hover::after {
+    width: 100%;
+  }
+  .btn-primary-custom {
+    transition: all 0.3s ease;
+  }
+  .btn-primary-custom:hover {
+    background-color: #36485d;
+    transform: translateY(-1px);
+  }
 }
 
 @layer base {
   * {
-    @apply border-border outline-ring/50;
+    @apply border-border;
     font-family: var(--font-sans);
-  }
-  h1, h2, h3, h4, h5, h6 {
-    font-family: var(--font-heading);
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
   }
   body {
     @apply bg-background text-foreground;
-    background-image: 
-        linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), 
-        linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
-    background-size: 100% 2px, 3px 100%;
+    background-color: #fff8f1;
+    color: #1f1b11;
   }
   button:not(:disabled), [role="button"]:not(:disabled) {
     cursor: pointer;
