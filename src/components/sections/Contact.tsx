@@ -85,10 +85,10 @@ export function Contact() {
               </a>
               <a
                 href={`mailto:${OWNER.email}`}
-                className="flex items-center gap-2 font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-colors duration-200"
+                className="flex items-center gap-2 font-label-caps text-label text-on-surface-variant hover:text-primary transition-colors duration-200"
               >
-                <AtSign size={14} />
-                Email
+                <Mail size={14} />
+                <span className="mb-0.5"> {OWNER.email}</span>
               </a>
             </div>
           </motion.div>
