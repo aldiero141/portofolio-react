@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react"
 import { motion } from "framer-motion"
-import { Mail, Link as LinkIcon, Code, AtSign } from "lucide-react"
+import { Mail, Link as LinkIcon, Code } from "lucide-react"
 import { OWNER, SOCIAL_LINKS } from "@/utils/constants"
 
 export function Contact() {
