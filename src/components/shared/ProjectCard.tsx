@@ -13,13 +13,13 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <article className="project-row group py-12 border-b border-primary/15 flex flex-col md:flex-row md:items-start transition-all cursor-pointer hover:bg-primary/5 px-gutter md:px-4">
+        <article className="project-row group py-12 border-b border-primary/15 flex flex-col md:flex-row md:items-start transition-all cursor-pointer hover:bg-primary/5 md:px-4">
           <div className="md:w-1/12 font-mono-data text-mono-data text-primary/40 mb-4 md:mb-0">
             {displayIndex}
           </div>
 
-          <div className="md:w-5/12 pr-12">
-            <h3 className="font-headline-sm text-headline-sm text-primary mb-3 flex items-center gap-2 group-hover:text-primary transition-colors">
+          <div className="md:w-5/12 md:pr-12">
+            <h3 className="font-headline-sm text-headline-sm text-primary mb-3 flex items-center gap-2 flex-wrap group-hover:text-primary transition-colors">
               {project.title}
               <ArrowUpRight
                 size={16}

@@ -34,7 +34,7 @@ export function Contact() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="flex flex-col gap-unit space-y-8 items-center"
+            className="flex flex-col gap-unit items-center"
           >
             <div className="space-y-4">
               <h2
@@ -64,7 +64,7 @@ export function Contact() {
               </a>
             </div>
 
-            <div className="flex items-center justify-center gap-8 mt-8">
+            <div className="flex flex-col items-center gap-4 mt-8 sm:mt-0 sm:flex-row sm:gap-8">
               <a
                 href={linkedinLink}
                 target="_blank"

@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { PROJECTS } from "@/utils/constants"
 import { ProjectCard } from "./ProjectCard"
@@ -11,6 +11,11 @@ interface ProjectFilterSectionProps {
 
 export function ProjectFilterSection({ projects }: ProjectFilterSectionProps) {
   const [activeFilter, setActiveFilter] = useState<string>("All")
+  const [showAll, setShowAll] = useState(false)
+
+  useEffect(() => {
+    setShowAll(false)
+  }, [activeFilter])
 
   const categories = ["All", ...new Set(projects.map((p) => p.category))]
 
@@ -20,6 +25,8 @@ export function ProjectFilterSection({ projects }: ProjectFilterSectionProps) {
       if (activeFilter === "All") return true
       return p.category === activeFilter
     })
+
+  const displayedProjects = showAll ? filteredProjects : filteredProjects.slice(0, 5)
 
   return (
     <>
@@ -47,7 +54,7 @@ export function ProjectFilterSection({ projects }: ProjectFilterSectionProps) {
       {/* Project List: Structured as technical rows */}
       <div className="flex flex-col border-t border-primary/15 mb-16">
         <AnimatePresence mode="popLayout">
-          {filteredProjects.map((project, index) => (
+          {displayedProjects.map((project, index) => (
             <motion.div
               key={project.id}
               layout
@@ -60,6 +67,21 @@ export function ProjectFilterSection({ projects }: ProjectFilterSectionProps) {
             </motion.div>
           ))}
         </AnimatePresence>
+
+        {filteredProjects.length > 5 && !showAll && (
+          <motion.button
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            onClick={() => setShowAll(true)}
+            className={cn(
+              "w-full py-6 font-label-caps text-label-caps text-primary/65",
+              "hover:text-primary hover:bg-primary/5 transition-all duration-200 cursor-pointer",
+              "border-b border-primary/15"
+            )}
+          >
+            Show all {filteredProjects.length} projects
+          </motion.button>
+        )}
       </div>
     </>
   )

@@ -22,7 +22,7 @@ export function Projects() {
         <ProjectFilterSection projects={PROJECTS} />
 
         {/* Decorative Quote and Technical SVG */}
-        <div className="mt-32 flex justify-between items-end">
+        <div className="mt-8 flex justify-between items-end">
           <div className="max-w-lg">
             <p className="font-body-md text-body-md text-primary/45 italic">
               "Engineering is the thoughtful design of systems and experiences, where every decision balances functionality, performance, and human needs."
